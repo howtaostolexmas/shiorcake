@@ -10,8 +10,8 @@ namespace DekBanshiCaptcha.Forms
     public class FormQ2 : BaseForm
     {
         private readonly TileGrid grid = new TileGrid();
-        private readonly int[] correct = { 0, 2, 3, 4, 5, 6, 9, 12, 13, 14 };
-        private readonly string[] labels = { "มหิต", "โรงอาหารคณะอื่น", "มหิต", "มหิต", "มหิต", "มหิต", "มหิต", "ภาพหลอก", "โรงอาหารคณะอื่น", "มหิต", "โรงอาหารคณะอื่น", "โรงอาหารคณะอื่น", "มหิต", "มหิต", "มหิต", "โรงอาหารคณะอื่น" };
+        private readonly int[] correct = { 0, 2, 3, 4, 5, 7 };
+        private readonly string[] labels = { "มหิต", "โรงอาหารคณะอื่น", "มหิต", "มหิต", "มหิต", "มหิต", "ภาพหลอก", "มหิต", "โรงอาหารคณะอื่น" };
         public FormQ2() { BuildUi(); }
 
         private void BuildUi()
@@ -22,18 +22,28 @@ namespace DekBanshiCaptcha.Forms
             for (int i = 0; i < labels.Length; i++)
             {
                 int index = i;
-                Color text = (i == 1 || i == 7 || i == 8 || i == 10 || i == 11 || i == 15) ? Theme.ErrorRed : Color.Black;
+                Color text = IsCorrect(i) ? Color.Black : Theme.ErrorRed;
                 TileSpec spec = new TileSpec { Text = labels[i], TextColor = text, BackColor = Theme.TileGrey };
                 spec.Image = Assets.Get("q2_" + i.ToString("00"), delegate { return CreateLabelImage(labels[index], text); });
                 tiles.Add(spec);
             }
-            grid.Build(4, 4, new Size(96, 96), 3, tiles);
+            grid.Build(3, 3, new Size(129, 129), 3, tiles);
             grid.Location = new Point(0, 0);
             card.Body.Controls.Add(grid);
             card.RefreshClicked += delegate { grid.ClearSelection(); };
             card.VerifyClicked += delegate { Decide(); };
             Content.Controls.Add(question);
             Content.Controls.Add(card);
+        }
+
+        // Returns true if this square index is in the answer key.
+        private bool IsCorrect(int index)
+        {
+            for (int i = 0; i < correct.Length; i++)
+            {
+                if (correct[i] == index) return true;
+            }
+            return false;
         }
 
         private Image CreateLabelImage(string label, Color color)
