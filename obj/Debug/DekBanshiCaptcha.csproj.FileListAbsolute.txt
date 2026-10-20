@@ -1,9 +1,0 @@
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\obj\Debug\DekBanshiCaptcha.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\obj\Debug\DekBanshiCaptcha.Properties.Resources.resources
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\obj\Debug\DekBanshiCaptcha.csproj.GenerateResource.cache
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\obj\Debug\DekBanshiCaptcha.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\bin\Debug\DekBanshiCaptcha.exe.config
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\bin\Debug\DekBanshiCaptcha.exe
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\bin\Debug\DekBanshiCaptcha.pdb
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\obj\Debug\DekBanshiCaptcha.exe
-C:\Users\User\source\repos\DekBanshiCaptcha\DekBanshiCaptcha\obj\Debug\DekBanshiCaptcha.pdb
