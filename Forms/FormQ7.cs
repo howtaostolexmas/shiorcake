@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using DekBanshiCaptcha.Controls;
@@ -11,6 +9,17 @@ namespace DekBanshiCaptcha.Forms
     public class FormQ7 : BaseForm
     {
         private readonly TileGrid grid = new TileGrid();
+
+        // 4x4 colours, left to right, top to bottom
+        // index 6 = accounting blue (correct), index 12 = engineering maroon (trap)
+        private readonly string[] tileColors =
+        {
+            "#036CA1", "#0082C2", "#0393DA", "#02ABFF",
+            "#016D96", "#0088BD", "#049FDA", "#02B9FE",
+            "#007A98", "#068EB3", "#02AFDC", "#04C9FE",
+            "#8A2431", "#02ABC2", "#03C1DA", "#06E1FE"
+        };
+
         public FormQ7() { BuildUi(); }
 
         private void BuildUi()
@@ -18,28 +27,14 @@ namespace DekBanshiCaptcha.Forms
             Label question = new Label { Text = "Question 7 / 7", Font = Theme.Small, Location = new Point(14, 10), Size = new Size(130, 20) };
             CaptchaCard card = new CaptchaCard(new Size(393, 393)) { Location = new Point(203, 36), Prompt = "Select all the squares with a", Subject = "สีประจำคณะ" };
             List<TileSpec> tiles = new List<TileSpec>();
-            for (int i = 0; i < 16; i++)
-                tiles.Add(new TileSpec { BackColor = GetTileColor(i) });
+            for (int i = 0; i < tileColors.Length; i++)
+                tiles.Add(new TileSpec { BackColor = ColorTranslator.FromHtml(tileColors[i]) });
             grid.Build(4, 4, new Size(96, 96), 3, tiles);
             card.Body.Controls.Add(grid);
             card.RefreshClicked += delegate { grid.ClearSelection(); };
             card.VerifyClicked += delegate { Decide(); };
             Content.Controls.Add(question);
             Content.Controls.Add(card);
-        }
-
-        private Color GetTileColor(int index)
-        {
-            if (index == 6) return Color.FromArgb(0, 161, 223);
-            if (index == 12) return Color.FromArgb(139, 35, 50);
-            int red = 0;
-            int green = 110 + (120 * index / 15);
-            int blue = 160 + (95 * index / 15);
-            Color color = Color.FromArgb(red, green, blue);
-#if DEBUG
-            Debug.Assert(Math.Abs(color.R - 0) >= 10 || Math.Abs(color.G - 161) >= 10 || Math.Abs(color.B - 223) >= 10);
-#endif
-            return color;
         }
 
         private void Decide()

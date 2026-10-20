@@ -41,5 +41,23 @@ namespace DekBanshiCaptcha.Forms
             panel.Controls.Add(studentId);
             Content.Controls.Add(panel);
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormHome
+            // 
+            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Name = "FormHome";
+            this.Load += new System.EventHandler(this.FormHome_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void FormHome_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
