@@ -38,7 +38,7 @@ namespace DekBanshiCaptcha.Forms
         private void Decide()
         {
             string normalized = answer.Text.Trim().Replace(" ", String.Empty).Replace("−", "-").Replace("–", "-");
-            if (normalized == "-7") Nav.Go(this, new FormQ6());
+            if (normalized == "1/2" || normalized == "0.5") Nav.Go(this, new FormQ6());
             else Nav.Go(this, new FormFail());
         }
     }
